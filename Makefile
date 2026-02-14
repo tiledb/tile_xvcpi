@@ -1,13 +1,24 @@
-PROG=tile_xvcpi
-CFLAGS=-std=gnu99 -O3 -Wall
+# Makefile for XVC Server
 
-all: $(PROG)
+CC = gcc
+CFLAGS = -O2 -Wall -pthread
 
-$(PROG): $(PROG).o
-	$(CC) -o $(PROG) -lpigpio -lrt $<
+# Sources
+SRCS = main.c gpio_io.c tcp_server.c xvc_protocol.c
+OBJS = $(SRCS:.c=.o)
+
+# Output executable
+TARGET = tile_xvcpi
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(PROG) *.o
+	rm -f $(OBJS) $(TARGET)
 
-deps:
-	sudo apt-get install build-essential libusb-dev libftdi-dev wiringpi git cmake pigpio pigpio-tools git make
+.PHONY: all clean
