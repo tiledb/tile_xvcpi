@@ -1,0 +1,24 @@
+{
+  "services": [
+    {
+      "name": "tile_xvcpi_1",
+      "command": "./tile_xvcpi -m 1 -p 2542 -s 1 -j 200",
+      "enabled": true
+    },
+    {
+      "name": "tile_xvcpi_2",
+      "command": "./tile_xvcpi -m 2 -p 2543 -s 1 -j 200",
+      "enabled": true
+    },
+    {
+      "name": "tile_xvcpi_3",
+      "command": "./tile_xvcpi -m 3 -p 2544 -s 1 -j 200",
+      "enabled": true
+    },
+    {
+      "name": "tile_xvcpi_4",
+      "command": "./tile_xvcpi -m 4 -p 2545 -s 1 -j 200",
+      "enabled": true
+    }
+  ]
+}

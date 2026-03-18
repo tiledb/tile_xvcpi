@@ -1,0 +1,17 @@
+<html>
+
+<head>
+    <title>Logs - {{name}}</title>
+</head>
+
+<body>
+    <h2>Logs - {{name}}</h2>
+    <a href="/">Back</a>
+    <pre>
+{% for line in logs %}
+{{line}}
+{% endfor %}
+</pre>
+</body>
+
+</html>

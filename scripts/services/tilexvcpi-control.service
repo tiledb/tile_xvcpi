@@ -1,0 +1,13 @@
+# /etc/systemd/system/service-manager.service
+[Unit]
+Description=TileXVC Control
+After=network.target
+
+[Service]
+User=tiledb
+WorkingDirectory=/home/tiledb/apps/tile_xvcpi/scripts/py
+ExecStart=sudo /home/tiledb/apps/tile_xvcpi/.pyenv/bin/python3 /home/tiledb/apps/tile_xvcpi/scripts/py/webpanel.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

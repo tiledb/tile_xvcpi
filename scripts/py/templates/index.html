@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <title>Service Manager</title>
+    <style>
+        .running {
+            color: green;
+            font-weight: bold;
+        }
+
+        .stopped {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Tile XVCPI Services</h2>
+    <a href="/restart_all">Restart All</a> | <a href="/kill_all">Kill All (pkill per
+        service)</a>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Name</th>
+            <th>Command</th>
+            <th>Status</th>
+            <th>CPU %</th>
+            <th>Memory MB</th>
+            <th>Actions</th>
+        </tr>
+        {% for s in services %}
+        <tr>
+            <td>{{s.name}}</td>
+            <td>{{s.command}}</td>
+            <td class="{{'running' if s.running else 'stopped'}}">{{'Running' if s.running else 'Stopped'}}</td>
+            <td>{{ "%.1f"|format(s.cpu) }}</td>
+            <td>{{ "%.1f"|format(s.memory) }}</td>
+            <td>
+                <a href="/start/{{s.name}}">Start</a>
+                <a href="/stop/{{s.name}}">Stop</a>
+                <a href="/restart/{{s.name}}">Restart</a>
+                <a href="/toggle/{{s.name}}">Enable/Disable</a>
+                <a href="/delete/{{s.name}}">Delete</a>
+                <a href="/logs/{{s.name}}">Logs</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Add Service</h3>
+    <form method="post" action="/add">
+        Name: <input name="name"> Command: <input name="command">
+        <button type="submit">Add</button>
+    </form>
+</body>
+
+</html>
